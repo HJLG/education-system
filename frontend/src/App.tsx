@@ -37,15 +37,7 @@ const App: React.FC = () => {
           <Route path="/classes" element={<ClassesPage />} />
           <Route path="/add-class" element={<AddClassPage />} />
           <Route path="/add-teacher" element={<AddTeacherPage/>} />
-          <Route
-            path="/"
-            element={
-              <div className="welcome-message">
-                <h1>Welcome to the Education System</h1>
-                <p>Select a page from the navigation bar</p>
-              </div>
-            }
-          />
+          <Route path="/" element={<TeachersPage/>}/>
         </Routes>
       </div>
     </Router>

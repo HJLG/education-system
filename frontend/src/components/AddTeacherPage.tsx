@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { addTeacher } from '../api';  // Import addTeacher function
+import { addTeacher } from '../api'; 
+import { useNavigate } from 'react-router-dom';
 
 const AddTeacherPage: React.FC = () => {
   const [name, setName] = useState<string>('');
@@ -8,6 +9,7 @@ const AddTeacherPage: React.FC = () => {
   const [contactNumber, setContactNumber] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const navigate = useNavigate(); 
 
   // Handle the form submission
   const handleSubmit = async (e: React.FormEvent) => {
@@ -30,6 +32,8 @@ const AddTeacherPage: React.FC = () => {
       setSubject('');
       setEmail('');
       setContactNumber('');
+      alert('Teacher added successfully!');
+      navigate("/teachers")
     } catch (error) {
       setSuccess(null);
       setError('Failed to add teacher');

@@ -18,7 +18,7 @@ export interface Class {
   level: string;
   name: string;
   teacherEmail: string;
-  formTeacher: string;
+  formTeacher?: string;
 }
 
 // Fetch teachers from the backend

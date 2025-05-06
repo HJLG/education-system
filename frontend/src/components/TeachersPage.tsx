@@ -37,13 +37,13 @@ const TeachersPage: React.FC = () => {
       {teachers.length === 0 ? (
         <div className="empty-teachers">
           <p>No teachers available</p>
-          <button onClick={handleAddTeacherClick}>Add Teacher</button>
         </div>
       ) : (
         <div className="table-container">
           <table>
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Subject</th>
                 <th>Email</th>
@@ -53,6 +53,7 @@ const TeachersPage: React.FC = () => {
             <tbody>
               {teachers.map((teacher) => (
                 <tr key={teacher.id}>
+                  <td>{teacher.id}</td>
                   <td>{teacher.name}</td>
                   <td>{teacher.subject}</td>
                   <td>{teacher.email}</td>

@@ -1,75 +1,90 @@
-import React, { useState } from 'react';
-import { addClass, Class } from '../api';  // Import the addClass API function
+import React, { useEffect, useState } from 'react';
+import { fetchTeachers, addClass } from '../api';  
+import { useNavigate } from 'react-router-dom';
 
 const AddClassPage: React.FC = () => {
-  const [level, setLevel] = useState<string>('');
-  const [name, setName] = useState<string>('');
-  const [teacherEmail, setTeacherEmail] = useState<string>('');
+  const [teachers, setTeachers] = useState<any[]>([]); 
+  const [formData, setFormData] = useState({
+    id: 0,
+    level: '',
+    name: '',
+    teacherEmail: '', 
+  });
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
+  const navigate = useNavigate(); 
 
-  // Handle the form submission
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const newClass: Class = {
-      id: 0,  // Placeholder value, assuming backend generates this
-      level,
-      name,
-      teacherEmail,
-      formTeacher: '',  // Placeholder, will be fetched by the backend
+  useEffect(() => {
+    const loadTeachers = async () => {
+      try {
+        const teacherData = await fetchTeachers();
+        setTeachers(teacherData);  
+      } catch (error) {
+        setError('Failed to fetch teachers');
+      }
     };
 
+    loadTeachers();
+  }, []);
+
+  // Handle form changes
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     try {
-      const addedClass = await addClass(newClass);
-      setSuccess(`Class "${addedClass.name}" added successfully!`);
-      setError(null);
-      // Reset form
-      setLevel('');
-      setName('');
-      setTeacherEmail('');
-    } catch (error) {
-      setSuccess(null);
+      const response = await addClass(formData);
+      console.log(response)
+      alert('Class added successfully!');
+      navigate("/classes")
+    } catch (err) {
       setError('Failed to add class');
     }
   };
 
+  if (error) return <div>{error}</div>;
+
   return (
-    <div>
+    <div className="add-class-container">
       <h1>Add New Class</h1>
-
-      {success && <p style={{ color: 'green' }}>{success}</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Class Level:</label>
+        <div className="form-group">
+          <label>Class Level</label>
+          <select name="level" value={formData.level} onChange={handleChange} required>
+            <option value="">Select Level</option>
+            <option value="Primary 1">Primary 1</option>
+            <option value="Primary 2">Primary 2</option>
+            <option value="Primary 3">Primary 3</option>
+            <option value="Primary 4">Primary 4</option>
+            <option value="Primary 5">Primary 5</option>
+            <option value="Primary 6">Primary 6</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label>Class Name</label>
           <input
             type="text"
-            value={level}
-            onChange={(e) => setLevel(e.target.value)}
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
             required
           />
         </div>
 
-        <div>
-          <label>Class Name:</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-
-        <div>
-          <label>Teacher Email:</label>
-          <input
-            type="email"
-            value={teacherEmail}
-            onChange={(e) => setTeacherEmail(e.target.value)}
-            required
-          />
+        <div className="form-group">
+          <label>Form Teacher</label>
+          <select name="teacherEmail" value={formData.teacherEmail} onChange={handleChange} required>
+            <option value="">Select Teacher</option>
+            {teachers.map((teacher) => (
+              <option key={teacher.id} value={teacher.email}>
+                {teacher.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <button type="submit">Add Class</button>
