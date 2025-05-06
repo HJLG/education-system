@@ -12,7 +12,7 @@ export const setupRoutes = (app: any) => {
 
     try {
       const newTeacher = await pool.query(
-        'INSERT INTO teachers (name, subject, email, contactNumber) VALUES ($1, $2, $3, $4) RETURNING *',
+        'INSERT INTO teachers (name, subject, email, contactnumber) VALUES ($1, $2, $3, $4) RETURNING *',
         [name, subject, email, contactNumber]
       );
       return res.status(201).json(newTeacher.rows[0]);

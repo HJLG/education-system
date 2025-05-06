@@ -1,0 +1,264 @@
+/* Reset and global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+}
+
+button {
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+input[type="text"], input[type="email"], select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+input:focus, select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Empty state for the Teachers Page */
+.empty-teachers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  text-align: center;
+}
+
+.empty-teachers p {
+  font-size: 18px;
+  color: #666;
+}
+
+.empty-teachers button {
+  margin-top: 20px;
+}
+
+/* Teachers List Table */
+.table-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th, table td {
+  padding: 12px;
+  text-align: left;
+}
+
+table th {
+  background-color: #007bff;
+  color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.add-teacher-btn {
+  margin-top: 20px;
+}
+
+/* Add Teacher Form Styles */
+.add-teacher-form {
+  max-width: 500px; /* Maximum width of the form */
+  width: 100%; /* Ensure the form takes up full width up to max-width */
+  margin: 40px auto; /* Center the form horizontally with margin on top and bottom */
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+  border-radius: 8px;
+  text-align: center;
+}
+
+.add-teacher-form h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.add-teacher-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.add-teacher-form input,
+.add-teacher-form select {
+  width: 100%; /* Make inputs take up full width */
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.add-teacher-form button {
+  width: 100%; /* Make button full width */
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.add-teacher-form button:hover {
+  background-color: #0056b3;
+}
+
+/* Error state for invalid inputs */
+.input-error {
+  border-color: #e74c3c;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Adjust the form on smaller screens */
+@media (max-width: 768px) {
+  .add-teacher-form {
+    margin: 20px;  /* Reduced margin for smaller screens */
+    padding: 15px;
+  }
+
+  .add-teacher-form input,
+  .add-teacher-form select,
+  .add-teacher-form button {
+    font-size: 14px;  /* Slightly smaller text */
+  }
+}
+
+
+/* General styles for the header */
+.header {
+  background-color: #007bff;  /* Blue background for the header */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo {
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: flex-end;  /* Align links to the right */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar ul {
+  display: flex;
+  gap: 20px;  /* Adds spacing between links */
+}
+
+.navbar li {
+  display: inline-block;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #f0f0f0;
+  text-decoration: underline;
+}
+
+/* Mobile view: Collapse navbar to a vertical stack */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .navbar {
+    flex-direction: column;
+    margin-top: 20px;
+  }
+
+  .navbar ul {
+    gap: 10px;  /* Smaller gap for mobile view */
+  }
+
+  .navbar a {
+    font-size: 18px;
+  }
+}
+
+/* Add Teacher Button in Bottom-Right Corner */
+.add-teacher-container {
+  position: fixed;  /* Fix the button to a specific position on the screen */
+  bottom: 20px;  /* Distance from the bottom */
+  right: 20px;   /* Distance from the right */
+  z-index: 100;  /* Ensure the button is above other content */
+}
+
+.add-teacher-container button {
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.add-teacher-container button:hover {
+  background-color: #0056b3;
+}
