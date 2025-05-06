@@ -1,3 +1,6 @@
+https://youtu.be/lg2q53PYrjw
+For video instructions!
+
 # Education system assessment
 This is a backend API for managing teachers and classes in an education system. It allows administrators to:
 - Add teachers
