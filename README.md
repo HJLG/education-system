@@ -54,15 +54,19 @@ CREATE TABLE classes (
 ## Step 2. Set up environment variables
 
 1. Create .env file in backend folder.
-2. Add your PostgreSQL connection string to the .env file:
-DATABASE_URL=postgresql://postgres:your_password@localhost:5432/education_system_db
+2. Add this to .env file
+DB_HOST=localhost
+DB_PORT=5432 
+DB_USER=postgres
+DB_PASSWORD=1234 
+DB_NAME=education_system
 
-Make sure to replace your_password with your actual PostgreSQL password when you installed it.
+Make sure DB_PASSWORD is same as the password when you installed Postgresql
 
 ## Step 3. Run the backend
 
 1. Compile typescript code, while in backend folder, run "npx tsc" in terminal
-2. Run the server using "node dist/server.js"
+2. Run the server using "npm run start"
 
 Backend should now be running at http://localhost:5000
 
@@ -81,3 +85,10 @@ POST /api/teachers: Add a new teacher by sending a POST request to http://localh
   "email": "john.doe@example.com",
   "contactNumber": "1234567890"
 }
+
+
+## Step 5. Front end
+1. Open another terminal and cd frontend
+2. Npm install
+3. npm run start
+
